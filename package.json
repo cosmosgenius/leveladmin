@@ -14,6 +14,11 @@
     "eslint": "^3.2.2",
     "webpack": "^2.1.0-beta.20"
   },
+  "build": {
+    "appId": "com.cosmosgenius.leveladmin",
+    "app-category-type": "public.app-category.developer-tools",
+    "asar": false
+  },
   "scripts": {
     "dev": "webpack --watch",
     "lint": "eslint .",
