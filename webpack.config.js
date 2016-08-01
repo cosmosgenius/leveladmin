@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const Copy = require('copy-webpack-plugin');
 const path = require('path');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -30,13 +29,7 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': JSON.stringify(nodeEnv)
             }
-        }),
-        // new Copy([
-        //     {
-        //         from: './assets',
-        //         to: './assets'
-        //     }
-        // ])
+        })
     ],
     target: 'electron'
 };
