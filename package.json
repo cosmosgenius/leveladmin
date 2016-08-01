@@ -1,0 +1,36 @@
+{
+  "name": "leveladmin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "copy-webpack-plugin": "^3.0.1",
+    "electron-prebuilt": "^1.3.1",
+    "eslint": "^3.2.2",
+    "webpack": "^2.1.0-beta.20"
+  },
+  "scripts": {
+    "dev": "webpack --watch",
+    "lint": "eslint .",
+    "build": "NODE_ENV=production webpack",
+    "test": "npm run lint",
+    "start": "electron app",
+    "prepublish": "npm test",
+    "prepush": "npm test",
+    "postinstall": "install-app-deps",
+    "pack": "npm run build && build --dir && babel --no-comments --compact --minified --out-file app/dist/bundle.js app/dist/bundle.js",
+    "dist": "npm run build && build",
+    "release": "npm run build && build --publish=onTagOrDraft"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cosmosgenius/leveladmin.git"
+  },
+  "author": "Sharat M R",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cosmosgenius/leveladmin/issues"
+  },
+  "homepage": "https://github.com/cosmosgenius/leveladmin#readme"
+}
