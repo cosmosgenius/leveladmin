@@ -1,35 +1,64 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
 
-const nodeEnv = process.env.NODE_ENV || 'development';
-const isProd = nodeEnv === 'production';
+const config = {
+    debug: true,
 
-module.exports = {
-    devtool: isProd ? 'hidden-source-map' : 'cheap-eval-source-map',
-    entry: './lib/index.js',
+    devtool: 'source-map',
+
+    entry: {
+        bundle: [
+            './lib/index.js'
+        ],
+    },
+
     output: {
-        path: path.join(__dirname, 'app', 'dist'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, 'app/'),
+        filename: '[name].js',
+        libraryTarget: 'commonjs2'
     },
+
     module: {
-        loaders: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                loader: 'babel'
-            },
-            {
-                test: /\.json/,
-                loader: 'json-loader'
-            }
-        ]
+        loaders: [{
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loaders: ['babel']
+        }],
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify(nodeEnv)
-            }
-        })
-    ],
-    target: 'electron'
+    plugins: [],
+    resolve: { },
+    target: 'electron-renderer'
 };
+
+if (process.env.NODE_ENV === 'production') {
+    config.devtool = false;
+    config.debug = false;
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+}
+
+module.exports = config;
+
+// Hot mode
+if (process.env.HOT) {
+    module.exports = merge(config, {
+        debug: true,
+        devtool: 'cheap-module-eval-source-map',
+        output: {
+            publicPath: 'http://localhost:8082/'
+        },
+        devServer: {
+            historyApiFallback: true,
+            progress: true,
+            hot: true,
+            inline: true,
+            port: 8082,
+            contentBase: 'app/'
+        },
+        plugins: [
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NamedModulesPlugin(),
+            new webpack.NoErrorsPlugin()
+        ]
+    });
+}
