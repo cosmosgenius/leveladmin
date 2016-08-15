@@ -1,4 +1,6 @@
 const electron = require('electron');
+const createRPC = require('./rpc');
+
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -13,6 +15,9 @@ function createWindow () {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
+
+    const rpc = createRPC(mainWindow);
+    mainWindow.rpc = rpc;
 }
 
 app.on('ready', createWindow);
