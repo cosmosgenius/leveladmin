@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Level Admin</title>
 </head>
 <body>
     <div id="maincontainer"></div>
-    <script>start = performance.now();</script>
-    <script src="dist/bundle.js"></script>
-    <script>console.log('total init time', performance.now() - start);</script>
+    <script>
+    (function() {
+        const script = document.createElement('script');
+        script.src = (process.env.HOT) ? 'http://localhost:8082/bundle.js' : 'bundle.js';
+        document.write(script.outerHTML);
+    }());
+    </script>
 </body>
 </html>

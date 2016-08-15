@@ -29,11 +29,11 @@
     "asar": false
   },
   "scripts": {
-    "dev": "cross-env HOT=1 webpack-dev-server",
+    "dev": "cross-env HOT=1 NODE_ENV=development webpack-dev-server",
     "lint": "eslint .",
     "build": "cross-env NODE_ENV=production webpack",
     "test": "npm run lint",
-    "start": "cross-env NODE_ENV=development electron app",
+    "start": "cross-env HOT=1 NODE_ENV=development electron app",
     "postinstall": "install-app-deps",
     "pack": "npm run build && build --dir && babel --no-comments --compact --minified --out-file app/dist/bundle.js app/dist/bundle.js",
     "dist": "npm run build && build",
