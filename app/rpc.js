@@ -10,7 +10,7 @@ class Server extends EventEmitter {
         ipcMain.on(this.id, this.ipcListener);
 
         this.wc.on('did-finish-load', () => {
-            this.wc.send('init');
+            this.wc.send('init', this.id);
         });
     }
 

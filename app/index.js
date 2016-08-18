@@ -1,8 +1,6 @@
-const electron = require('electron');
+const { app, Menu, BrowserWindow } = require('electron');
 const createRPC = require('./rpc');
-
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const menutpl = require('./menu');
 
 let mainWindow;
 
@@ -15,6 +13,9 @@ function createWindow () {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
+
+    const menu = Menu.buildFromTemplate(menutpl);
+    Menu.setApplicationMenu(menu);
 
     const rpc = createRPC(mainWindow);
     mainWindow.rpc = rpc;
