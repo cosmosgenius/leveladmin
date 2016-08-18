@@ -26,7 +26,7 @@
   },
   "build": {
     "appId": "com.cosmosgenius.leveladmin",
-    "app-category-type": "public.app-category.developer-tools",
+    "category": "public.app-category.developer-tools",
     "asar": false
   },
   "scripts": {
