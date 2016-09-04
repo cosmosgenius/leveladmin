@@ -1,14 +1,20 @@
 const { app, Menu, BrowserWindow } = require('electron');
 const createRPC = require('./rpc');
 const menutpl = require('./menu');
+const devtools = require('./devtools');
 
 let mainWindow;
 
 function createWindow () {
     mainWindow = new BrowserWindow({width: 800, height: 600});
 
+    if(process.env.NODE_ENV === 'development') {
+        devtools.initTools().then(()=>{
+            mainWindow.webContents.openDevTools();
+        });
+    }
+
     mainWindow.loadURL(`file://${__dirname}/index.html`);
-    mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function () {
         mainWindow = null;

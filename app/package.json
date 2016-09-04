@@ -9,6 +9,8 @@
   "author": "Sharat M R",
   "license": "MIT",
   "dependencies": {
+    "devtron": "^1.3.0",
+    "electron-devtools-installer": "^2.0.1",
     "level": "^1.4.0"
   }
 }
