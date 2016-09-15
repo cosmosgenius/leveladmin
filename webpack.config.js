@@ -20,11 +20,17 @@ const config = {
     },
 
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loaders: ['babel']
-        }],
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loaders: ['babel']
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass']
+            }
+        ],
     },
     plugins: [],
     resolve: { },
