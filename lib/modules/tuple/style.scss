@@ -1,6 +1,10 @@
-body {
-    font-size: 20px;
-    a{
-        font-size: 30px;
+.tuple {
+    display: flex;
+    &__key {
+        flex: 0 0 calc(5em + 20%);
+    }
+
+    &__value {
+
     }
 }
