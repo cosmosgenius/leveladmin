@@ -1,10 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const AsyncAwaitPlugin = require('webpack-async-await');
 
 const config = {
-    debug: true,
-
     devtool: 'source-map',
 
     entry: {
@@ -32,14 +31,15 @@ const config = {
             }
         ],
     },
-    plugins: [],
+    plugins: [
+        new AsyncAwaitPlugin({})
+    ],
     resolve: { },
     target: 'electron-renderer'
 };
 
 if (process.env.NODE_ENV === 'production') {
     config.devtool = false;
-    config.debug = false;
     // config.plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
 
@@ -48,7 +48,6 @@ module.exports = config;
 // Hot mode
 if (process.env.HOT) {
     module.exports = merge(config, {
-        debug: true,
         devtool: 'cheap-module-eval-source-map',
         output: {
             publicPath: 'http://localhost:8082/'
@@ -64,7 +63,10 @@ if (process.env.HOT) {
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NamedModulesPlugin(),
-            new webpack.NoErrorsPlugin()
+            new webpack.NoErrorsPlugin(),
+            new webpack.LoaderOptionsPlugin({
+               debug: true
+            })
         ]
     });
 }

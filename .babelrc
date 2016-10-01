@@ -3,7 +3,7 @@
         "react"
     ],
     "plugins": [
-        "transform-async-to-generator"
+
     ],
     "env": {
         "development": {

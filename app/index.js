@@ -6,6 +6,7 @@ const devtools = require('./devtools');
 let mainWindow;
 
 function createWindow () {
+    app.commandLine.appendSwitch('js-flags', '--harmony');
     mainWindow = new BrowserWindow({width: 800, height: 600});
 
     if(process.env.NODE_ENV === 'development') {
