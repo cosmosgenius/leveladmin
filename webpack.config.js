@@ -65,7 +65,7 @@ if (process.env.HOT) {
             new webpack.NamedModulesPlugin(),
             new webpack.NoErrorsPlugin(),
             new webpack.LoaderOptionsPlugin({
-               debug: true
+                debug: true
             })
         ]
     });
