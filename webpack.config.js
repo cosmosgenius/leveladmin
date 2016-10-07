@@ -26,7 +26,7 @@ const config = {
                 loaders: ['babel']
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 loaders: ['style', 'css', 'sass']
             }
         ],
