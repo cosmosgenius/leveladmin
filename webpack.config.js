@@ -48,7 +48,7 @@ module.exports = config;
 // Hot mode
 if (process.env.HOT) {
     module.exports = merge(config, {
-        devtool: 'cheap-module-eval-source-map',
+        devtool: 'cheap-eval-source-map',
         output: {
             publicPath: 'http://localhost:8082/'
         },
@@ -61,6 +61,7 @@ if (process.env.HOT) {
             contentBase: 'app/'
         },
         plugins: [
+
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NamedModulesPlugin(),
             new webpack.NoErrorsPlugin(),
